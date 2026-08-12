@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip' # 啟用 pip 快取，加快後續執行速度
+          # 已移除 cache: 'pip'，避免找不到 requirements.txt 報錯
 
       - name: Install dependencies
         run: |

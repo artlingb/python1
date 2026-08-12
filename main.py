@@ -47,6 +47,10 @@ def compare_and_highlight():
         
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 偵測到網頁異動！正在產生高亮報告...")
     
+    # 計算異動處數量 (透過 ndiff 計算非空白且非未變更的行數)
+    diff_generator = list(difflib.ndiff(previous_lines, current_lines))
+    change_count = sum(1 for line in diff_generator if line.startswith('+ ') or line.startswith('- '))
+    
     # 取得檔案最後修改日期作為「昨日內容」的代表日期（若無則帶今日）
     mtime = os.path.getmtime(DATA_FILE)
     prev_date_str = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
@@ -62,8 +66,8 @@ def compare_and_highlight():
         numlines=0
     )
     
-    # 自訂 CSS 樣式：實現整列高亮與不同增刪顏色區隔
-    custom_css = """
+    # 自訂 CSS 樣式與最上方的異動統計橫幅 HTML
+    custom_style_and_banner = f"""
     <style>
         table.diff { font-family: Consolas, Monaco, monospace; border-collapse: collapse; width: 100%; font-size: 14px; }
         .diff_header { background-color: #f1f1f1; text-align: right; width: 4em; color: #aaa; padding: 2px 5px; }
@@ -81,11 +85,32 @@ def compare_and_highlight():
         
         body { font-family: Arial, sans-serif; margin: 20px; background-color: #fafafa; }
         h2 { color: #333; }
+        
+        /* 異動統計橫幅樣式 */
+        .summary-banner {{
+            background-color: #e8f4fd;
+            border-left: 5px solid #2196F3;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #0d3c61;
+            font-weight: bold;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }}
     </style>
+    </head>
     """
     
-    # 將自訂 CSS 注入到產生的 HTML 中
-    html_diff = html_diff.replace("</head>", f"{custom_css}</head>")
+    # 取代預設的 </head>，並在 <body> 剛開始的地方插入統計橫幅
+    html_diff = html_diff.replace("</head>", custom_style_and_banner)
+    
+    banner_html = f"""
+    <div class="summary-banner">
+        📊 偵測報告：本次網頁共計有 <span>{change_count}</span> 處異動（對比日期：{prev_date_str} vs {today_str}）
+    </div>
+    """
+    html_diff = html_diff.replace("<body>", f"<body>\n{banner_html}")
     
     with open(DIFF_OUTPUT, "w", encoding="utf-8") as f:
         f.write(html_diff)

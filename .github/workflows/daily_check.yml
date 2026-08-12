@@ -11,21 +11,26 @@ jobs:
     permissions:
       contents: write # 確保有權限寫入檔案(如 diff.html)
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install requests beautifulsoup4
+
       - name: Run script
         run: python main.py
+
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # 若有產生新檔案則 commit 並 push
           git add .
           git commit -m "Auto-update: 網頁異動比對報告" || exit 0
           git push

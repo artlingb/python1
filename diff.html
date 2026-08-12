@@ -17,7 +17,26 @@
         .diff_chg {background-color:#ffff77}
         .diff_sub {background-color:#ffaaaa}
     </style>
-</head>
+
+    <style>
+        table.diff { font-family: Consolas, Monaco, monospace; border-collapse: collapse; width: 100%; font-size: 14px; }
+        .diff_header { background-color: #f1f1f1; text-align: right; width: 4em; color: #aaa; padding: 2px 5px; }
+        .diff_next { background-color: #c0c0c0; }
+        
+        /* 刪除列整列高亮 (淺紅底) */
+        .diff_sub { background-color: #ffe6e6 !important; }
+        /* 新增列整列高亮 (淺綠底) */
+        .diff_add { background-color: #e6ffed !important; }
+        
+        /* 區塊內細部文字顏色變更 */
+        td.diff_chg { background-color: #fffbdd; }
+        span.diff_sub { background-color: #ffc0c0; color: #900; text-decoration: line-through; }
+        span.diff_add { background-color: #acf2bd; color: #006000; font-weight: bold; }
+        
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #fafafa; }
+        h2 { color: #333; }
+    </style>
+    </head>
 
 <body>
     
@@ -25,7 +44,7 @@
            cellspacing="0" cellpadding="0" rules="groups" >
         <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
         <colgroup></colgroup> <colgroup></colgroup> <colgroup></colgroup>
-        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">昨日內容</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">今日最新內容</th></tr></thead>
+        <thead><tr><th class="diff_next"><br /></th><th colspan="2" class="diff_header">昨日內容 (2026-08-12)</th><th class="diff_next"><br /></th><th colspan="2" class="diff_header">今日最新內容 (2026-08-12)</th></tr></thead>
         <tbody>
             <tr><td class="diff_next"><a href="#difflib_chg_to0__0">f</a></td><td class="diff_header" id="from0_1">1</td><td nowrap="nowrap">:::</td><td class="diff_next"><a href="#difflib_chg_to0__0">f</a></td><td class="diff_header" id="to0_1">1</td><td nowrap="nowrap">:::</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_2">2</td><td nowrap="nowrap">:::&nbsp;&nbsp;&nbsp;首頁&nbsp;市府團隊&nbsp;局處組織&nbsp;首長介紹</td><td class="diff_next"></td><td class="diff_header" id="to0_2">2</td><td nowrap="nowrap">:::&nbsp;&nbsp;&nbsp;首頁&nbsp;市府團隊&nbsp;局處組織&nbsp;首長介紹</td></tr>
@@ -37,12 +56,12 @@
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_8">8</td><td nowrap="nowrap">送出查詢</td><td class="diff_next"></td><td class="diff_header" id="to0_8">8</td><td nowrap="nowrap">送出查詢</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_9">9</td><td nowrap="nowrap">清除</td><td class="diff_next"></td><td class="diff_header" id="to0_9">9</td><td nowrap="nowrap">清除</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_10">10</td><td nowrap="nowrap">一級單位</td><td class="diff_next"></td><td class="diff_header" id="to0_10">10</td><td nowrap="nowrap">一級單位</td></tr>
-            <tr><td class="diff_next" id="difflib_chg_to0__0"></td><td class="diff_header" id="from0_11">11</td><td nowrap="nowrap">機關名稱</td><td class="diff_next"></td><td class="diff_header" id="to0_11">11</td><td nowrap="nowrap">機關名稱</td></tr>
+            <tr><td class="diff_next"></td><td class="diff_header" id="from0_11">11</td><td nowrap="nowrap">機關名稱</td><td class="diff_next"></td><td class="diff_header" id="to0_11">11</td><td nowrap="nowrap">機關名稱</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_12">12</td><td nowrap="nowrap">職稱</td><td class="diff_next"></td><td class="diff_header" id="to0_12">12</td><td nowrap="nowrap">職稱</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_13">13</td><td nowrap="nowrap">姓名</td><td class="diff_next"></td><td class="diff_header" id="to0_13">13</td><td nowrap="nowrap">姓名</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_14">14</td><td nowrap="nowrap">秘書處</td><td class="diff_next"></td><td class="diff_header" id="to0_14">14</td><td nowrap="nowrap">秘書處</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_15">15</td><td nowrap="nowrap">處長</td><td class="diff_next"></td><td class="diff_header" id="to0_15">15</td><td nowrap="nowrap">處長</td></tr>
-            <tr><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="from0_16">16</td><td nowrap="nowrap">黃國照<span class="diff_sub">1</span></td><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="to0_16">16</td><td nowrap="nowrap">黃國照</td></tr>
+            <tr><td class="diff_next" id="difflib_chg_to0__0"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="from0_16">16</td><td nowrap="nowrap"><span class="diff_sub">黃國照ddd</span></td><td class="diff_next"><a href="#difflib_chg_to0__1">n</a></td><td class="diff_header" id="to0_16">16</td><td nowrap="nowrap"><span class="diff_add">黃國照</span></td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_17">17</td><td nowrap="nowrap">法制處</td><td class="diff_next"></td><td class="diff_header" id="to0_17">17</td><td nowrap="nowrap">法制處</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_18">18</td><td nowrap="nowrap">處長</td><td class="diff_next"></td><td class="diff_header" id="to0_18">18</td><td nowrap="nowrap">處長</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_19">19</td><td nowrap="nowrap">楊璿圓</td><td class="diff_next"></td><td class="diff_header" id="to0_19">19</td><td nowrap="nowrap">楊璿圓</td></tr>
@@ -54,7 +73,7 @@
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_25">25</td><td nowrap="nowrap">白惠蘭</td><td class="diff_next"></td><td class="diff_header" id="to0_25">25</td><td nowrap="nowrap">白惠蘭</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_26">26</td><td nowrap="nowrap">人事處</td><td class="diff_next"></td><td class="diff_header" id="to0_26">26</td><td nowrap="nowrap">人事處</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_27">27</td><td nowrap="nowrap">處長</td><td class="diff_next"></td><td class="diff_header" id="to0_27">27</td><td nowrap="nowrap">處長</td></tr>
-            <tr><td class="diff_next"></td><td class="diff_header" id="from0_28">28</td><td nowrap="nowrap">游梅子</td><td class="diff_next"></td><td class="diff_header" id="to0_28">28</td><td nowrap="nowrap">游梅子</td></tr>
+            <tr><td class="diff_next" id="difflib_chg_to0__1"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="from0_28">28</td><td nowrap="nowrap"><span class="diff_sub">游梅子ddd</span></td><td class="diff_next"><a href="#difflib_chg_to0__top">t</a></td><td class="diff_header" id="to0_28">28</td><td nowrap="nowrap"><span class="diff_add">游梅子</span></td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_29">29</td><td nowrap="nowrap">客家事務委員會</td><td class="diff_next"></td><td class="diff_header" id="to0_29">29</td><td nowrap="nowrap">客家事務委員會</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_30">30</td><td nowrap="nowrap">主任委員</td><td class="diff_next"></td><td class="diff_header" id="to0_30">30</td><td nowrap="nowrap">主任委員</td></tr>
             <tr><td class="diff_next"></td><td class="diff_header" id="from0_31">31</td><td nowrap="nowrap">陳新裕</td><td class="diff_next"></td><td class="diff_header" id="to0_31">31</td><td nowrap="nowrap">陳新裕</td></tr>

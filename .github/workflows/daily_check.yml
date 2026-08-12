@@ -2,21 +2,22 @@ name: Daily Website Monitor
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天台灣時間早上 8:00
+    # 每天 UTC 0:00 (台灣時間早上 8:00) 執行
+    - cron: '0 0 * * *'
   workflow_dispatch: # 允許手動點擊執行
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # 確保有權限寫入檔案
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: setup-python@v5 # 或是 actions/setup-python@v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 

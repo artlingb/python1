@@ -66,8 +66,8 @@ def compare_and_highlight():
         numlines=0
     )
     
-    # 自訂 CSS 樣式與最上方的異動統計橫幅 HTML
-    custom_style_and_banner = f"""
+    # 自訂 CSS 樣式 (注意：這裡改用一般字串，避免 f-string 衝突)
+    custom_style = """
     <style>
         table.diff { font-family: Consolas, Monaco, monospace; border-collapse: collapse; width: 100%; font-size: 14px; }
         .diff_header { background-color: #f1f1f1; text-align: right; width: 4em; color: #aaa; padding: 2px 5px; }
@@ -87,7 +87,7 @@ def compare_and_highlight():
         h2 { color: #333; }
         
         /* 異動統計橫幅樣式 */
-        .summary-banner {{
+        .summary-banner {
             background-color: #e8f4fd;
             border-left: 5px solid #2196F3;
             padding: 12px 20px;
@@ -97,14 +97,15 @@ def compare_and_highlight():
             font-weight: bold;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }}
+        }
     </style>
     </head>
     """
     
-    # 取代預設的 </head>，並在 <body> 剛開始的地方插入統計橫幅
-    html_diff = html_diff.replace("</head>", custom_style_and_banner)
+    # 將自訂 CSS 注入到產生的 HTML 中
+    html_diff = html_diff.replace("</head>", custom_style)
     
+    # 建立頂部異動統計橫幅
     banner_html = f"""
     <div class="summary-banner">
         📊 偵測報告：本次網頁共計有 <span>{change_count}</span> 處異動（對比日期：{prev_date_str} vs {today_str}）

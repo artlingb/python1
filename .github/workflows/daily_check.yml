@@ -2,22 +2,25 @@ name: Daily Website Monitor
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0:00 (台灣時間早上 8:00) 執行
+    # 每天 UTC 0:00 (台灣時間早上 8:00) 執行
+    - cron: '0 0 * * *'
   workflow_dispatch: # 允許手動點擊執行
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 確保有權限寫入檔案(如 diff.html)
+      contents: write # 確保有權限寫入檔案
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # 或者是切換至 checkout@v6 / 最新版
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip' # 啟用 pip 快取，加快後續執行速度
 
       - name: Install dependencies
         run: |
@@ -31,6 +34,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add .
-          git commit -m "Auto-update: 網頁異動比對報告" || exit 0
+          # 只在有檔案變動時進行 commit
+          git add latest_content.txt diff.html || true
+          git commit -m "Auto-update: 網頁異動比對報告" || echo "無異動內容"
           git push
